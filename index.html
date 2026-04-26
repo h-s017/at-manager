@@ -5,18 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#424A5A">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.png" type="image/png">
+<link rel="apple-touch-icon" href="icon.png">
 <title>AT 學員管理 | Hana</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-body { font-family: -apple-system, BlinkMacSystemFont, "PingFang TC", "Microsoft JhengHei", sans-serif; background: #F5F1EA; color: #2C2C2C; padding: 16px; padding-bottom: 100px; max-width: 720px; margin: 0 auto; min-height: 100vh; }
+body { font-size: var(--app-font-size, 16px); font-family: -apple-system, BlinkMacSystemFont, "PingFang TC", "Microsoft JhengHei", sans-serif; background: #F4F1EB; color: #2C2C2C; padding: 16px; padding-bottom: 100px; max-width: 720px; margin: 0 auto; min-height: 100vh; }
 
-header { background: #4A4E2C; color: white; padding: 18px 20px; border-radius: 12px; margin-bottom: 16px; }
+header { background: #424A5A; color: white; padding: 18px 20px; border-radius: 12px; margin-bottom: 16px; }
 header h1 { font-size: 18px; font-weight: 600; }
 header .sub { font-size: 12px; opacity: 0.7; margin-top: 4px; }
 
 .tabs { display: flex; gap: 6px; margin-bottom: 16px; background: white; padding: 4px; border-radius: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
 .tab { flex: 1; padding: 10px 6px; text-align: center; border-radius: 7px; font-size: 12px; cursor: pointer; transition: all 0.2s; font-weight: 500; }
-.tab.active { background: #4A4E2C; color: white; }
+.tab.active { background: #424A5A; color: white; }
 .tab .badge { background: #D85A30; color: white; border-radius: 10px; padding: 1px 5px; font-size: 10px; margin-left: 3px; }
 
 .alert-bar { background: #FFF4E5; border: 1px solid #F0B94A; border-radius: 10px; padding: 12px 14px; margin-bottom: 16px; font-size: 13px; color: #8B5A00; display: none; }
@@ -24,16 +29,16 @@ header .sub { font-size: 12px; opacity: 0.7; margin-top: 4px; }
 
 .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 16px; }
 .stat-box { background: white; padding: 10px 4px; border-radius: 8px; text-align: center; }
-.stat-num { font-size: 20px; font-weight: 700; color: #4A4E2C; }
+.stat-num { font-size: 20px; font-weight: 700; color: #424A5A; }
 .stat-label { font-size: 10px; color: #777; margin-top: 2px; }
 
 .search-box { width: 100%; padding: 10px 14px; border: 1px solid #DDD6C5; border-radius: 8px; font-size: 14px; margin-bottom: 12px; background: white; font-family: inherit; }
-.search-box:focus { outline: none; border-color: #4A4E2C; }
+.search-box:focus { outline: none; border-color: #424A5A; }
 
 .filter-bar { display: flex; gap: 6px; margin-bottom: 12px; overflow-x: auto; padding-bottom: 4px; }
 .filter-bar::-webkit-scrollbar { display: none; }
 .filter-chip { padding: 6px 12px; background: white; border-radius: 20px; font-size: 12px; cursor: pointer; white-space: nowrap; border: 1px solid #E5DDC8; }
-.filter-chip.active { background: #4A4E2C; color: white; border-color: #4A4E2C; }
+.filter-chip.active { background: #424A5A; color: white; border-color: #424A5A; }
 
 .card { background: white; border-radius: 10px; padding: 14px; margin-bottom: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
 .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; gap: 8px; }
@@ -56,8 +61,8 @@ header .sub { font-size: 12px; opacity: 0.7; margin-top: 4px; }
 .actions { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
 .btn { padding: 7px 12px; border-radius: 6px; font-size: 12px; cursor: pointer; border: none; font-weight: 500; transition: all 0.15s; font-family: inherit; }
 .btn:active { transform: scale(0.96); }
-.btn-primary { background: #4A4E2C; color: white; }
-.btn-second { background: #F0EBDD; color: #5A4A2E; }
+.btn-primary { background: #424A5A; color: white; }
+.btn-second { background: #EAE4D8; color: #5C6070; }
 .btn-call { background: #FF6B35; color: white; }
 .btn-cal { background: #4A86E8; color: white; }
 .btn-line { background: #06C755; color: white; }
@@ -65,19 +70,19 @@ header .sub { font-size: 12px; opacity: 0.7; margin-top: 4px; }
 .btn-del { background: transparent; color: #C44; padding: 7px 8px; }
 
 .fab { position: fixed; bottom: 24px; right: 16px; left: 16px; max-width: 688px; margin: 0 auto; pointer-events: none; }
-.fab-btn { width: 100%; padding: 16px; background: #4A4E2C; color: white; border: none; border-radius: 12px; font-size: 15px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 16px rgba(74,78,44,0.35); pointer-events: auto; }
+.fab-btn { width: 100%; padding: 16px; background: #424A5A; color: white; border: none; border-radius: 12px; font-size: 15px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 16px rgba(66,74,90,0.28); pointer-events: auto; }
 .fab-btn:active { transform: translateY(1px); }
 
 .modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 100; overflow-y: auto; }
 .modal.show { display: block; }
 .modal-box { background: white; border-radius: 14px; padding: 20px; max-width: 600px; margin: 20px auto; }
-.modal-title { font-size: 17px; font-weight: 600; margin-bottom: 14px; color: #4A4E2C; }
+.modal-title { font-size: 17px; font-weight: 600; margin-bottom: 14px; color: #424A5A; }
 .modal-close { float: right; font-size: 22px; cursor: pointer; color: #888; line-height: 1; padding: 0 4px; }
 
 .form-group { margin-bottom: 12px; }
 .form-group label { display: block; font-size: 12px; color: #555; margin-bottom: 4px; font-weight: 500; }
 .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 9px 11px; border: 1px solid #DDD6C5; border-radius: 7px; font-size: 14px; font-family: inherit; background: white; }
-.form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: #4A4E2C; }
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: #424A5A; }
 .form-group textarea { resize: vertical; min-height: 60px; }
 .form-row { display: flex; gap: 8px; }
 .form-row .form-group { flex: 1; }
@@ -86,43 +91,92 @@ header .sub { font-size: 12px; opacity: 0.7; margin-top: 4px; }
 .empty-icon { font-size: 36px; margin-bottom: 10px; opacity: 0.4; }
 
 .template-item { background: white; padding: 10px 12px; border-radius: 6px; margin-bottom: 8px; font-size: 13px; line-height: 1.6; cursor: pointer; border: 1px solid #E5DDC8; }
-.template-item:hover, .template-item:active { border-color: #4A4E2C; background: #F5F1EA; }
-.template-label { font-size: 11px; color: #4A4E2C; font-weight: 600; margin-bottom: 4px; }
+.template-item:hover, .template-item:active { border-color: #424A5A; background: #F4F1EB; }
+.template-label { font-size: 11px; color: #424A5A; font-weight: 600; margin-bottom: 4px; }
 .template-text { color: #333; white-space: pre-wrap; }
 
-.toast { position: fixed; bottom: 110px; left: 50%; transform: translateX(-50%); background: #4A4E2C; color: white; padding: 10px 18px; border-radius: 8px; font-size: 13px; opacity: 0; transition: opacity 0.3s; z-index: 1000; pointer-events: none; }
+.toast { position: fixed; bottom: 110px; left: 50%; transform: translateX(-50%); background: #424A5A; color: white; padding: 10px 18px; border-radius: 8px; font-size: 13px; opacity: 0; transition: opacity 0.3s; z-index: 1000; pointer-events: none; }
 .toast.show { opacity: 1; }
 
-.task-card { background: white; border-radius: 10px; padding: 12px 14px; margin-bottom: 8px; border-left: 4px solid #4A4E2C; }
+.task-card { background: white; border-radius: 10px; padding: 12px 14px; margin-bottom: 8px; border-left: 4px solid #424A5A; }
 .task-card.urgent { border-left-color: #D85A30; background: #FFF8F4; }
 .task-card.due-soon { border-left-color: #F0B94A; }
 .task-name { font-size: 14px; font-weight: 600; }
 .task-action { font-size: 12px; color: #666; margin-top: 2px; }
 .task-time { font-size: 11px; color: #888; margin-top: 4px; font-weight: 500; }
 .task-time.urgent { color: #D85A30; }
+.task-overdue-badge { display:inline-block; margin-left:6px; padding:1px 6px; border-radius:10px; background:#FAE0D5; color:#B0421A; font-size:10px; font-weight:600; vertical-align:middle; }
 
-.section-title { font-size: 14px; font-weight: 600; color: #4A4E2C; margin: 12px 0 8px; padding-left: 4px; }
+.task-date-panel { background:white; border-radius:10px; padding:12px; margin-bottom:12px; box-shadow:0 1px 3px rgba(0,0,0,0.05); display:flex; gap:8px; align-items:center; flex-wrap:wrap; justify-content:center; }
+.task-date-panel label { font-size:13px; color:#555; display:flex; align-items:center; gap:6px; }
+.task-date-panel input { padding:7px 9px; border:1px solid #DDD6C5; border-radius:7px; font-size:13px; font-family:inherit; background:white; }
+.task-date-panel input:focus { outline:none; border-color:#424A5A; }
+.task-date-btn { padding:7px 10px; border:none; border-radius:7px; background:#EAE4D8; color:#5C6070; font-size:12px; font-family:inherit; cursor:pointer; }
+.task-date-btn.active { background:#424A5A; color:white; }
+.task-date-hint { text-align:center; font-size:12px; color:#888; margin:-2px 0 10px; }
+
+.section-title { font-size: 14px; font-weight: 600; color: #424A5A; margin: 12px 0 8px; padding-left: 4px; }
 
 /* Pomodoro */
 .pomo-time-config { background: white; border-radius: 10px; padding: 12px; margin-bottom: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
 .pomo-time-row { display: flex; gap: 12px; justify-content: center; align-items: center; }
 .pomo-time-row label { font-size: 13px; color: #555; display: flex; align-items: center; gap: 6px; }
 .pomo-time-row input { width: 50px; padding: 5px 8px; border: 1px solid #DDD6C5; border-radius: 6px; font-size: 14px; text-align: center; font-family: inherit; }
-.pomo-time-row input:focus { outline: none; border-color: #4A4E2C; }
+.pomo-time-row input:focus { outline: none; border-color: #424A5A; }
 .pomo-card { background: white; border-radius: 12px; padding: 24px 20px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
-.pomo-status { font-size: 13px; color: #4A4E2C; font-weight: 600; margin-bottom: 12px; }
-.pomo-cat { display: flex; justify-content: center; margin-bottom: 8px; transition: transform 0.5s; }
-.pomo-cat.breathing { animation: catBreathe 4s ease-in-out infinite; }
-@keyframes catBreathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.03); } }
+.pomo-status { font-size: 13px; color: #424A5A; font-weight: 600; margin-bottom: 12px; }
+.pomo-cat { display:flex; justify-content:center; margin-bottom: 10px; }
+.pomo-cat-frame { width: 240px; height: 220px; overflow:hidden; border-radius: 18px; display:flex; align-items:center; justify-content:center; background:#fff; }
+.pomo-cat-image { width: 230px; height: 210px; object-fit: contain; object-position: center; transform: scale(1); transition: opacity .25s ease, transform .4s ease; user-select:none; -webkit-user-drag:none; }
+.pomo-cat.breathing .pomo-cat-image { animation: catFloat 4.2s ease-in-out infinite; }
+.pomo-cat.working .pomo-cat-image { transform: scale(1.02); }
+.pomo-cat.resting .pomo-cat-image { opacity: .98; }
+@keyframes catFloat { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-3px) scale(1.02); } }
 .pomo-time { font-size: 48px; font-weight: 200; color: #2C2C2C; margin: 8px 0 16px; font-variant-numeric: tabular-nums; letter-spacing: 1px; }
-.pomo-progress { width: 100%; height: 4px; background: #F0EBDD; border-radius: 2px; overflow: hidden; margin-bottom: 20px; }
-.pomo-progress-bar { height: 100%; background: #4A4E2C; width: 0%; transition: width 1s linear; }
+.pomo-progress { width: 100%; height: 4px; background: #EAE4D8; border-radius: 2px; overflow: hidden; margin-bottom: 20px; }
+.pomo-progress-bar { height: 100%; background: #424A5A; width: 0%; transition: width 1s linear; }
 .pomo-controls { display: flex; gap: 8px; justify-content: center; margin-bottom: 16px; }
 .pomo-btn { padding: 10px 24px; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; border: none; font-family: inherit; }
-.pomo-btn-primary { background: #4A4E2C; color: white; }
-.pomo-btn-second { background: #F0EBDD; color: #5A4A2E; }
+.pomo-btn-primary { background: #424A5A; color: white; }
+.pomo-btn-second { background: #EAE4D8; color: #5C6070; }
 .pomo-stats { font-size: 12px; color: #888; }
-.pomo-stats strong { color: #4A4E2C; font-weight: 600; }
+.pomo-stats strong { color: #424A5A; font-weight: 600; }
+
+
+/* Settings / consultant template */
+:root { --brand-color:#424A5A; --brand-color-rgb:66,74,90; --app-bg:#F4F1EB; }
+.settings-card { background:white; border-radius:12px; padding:16px; margin-bottom:12px; box-shadow:0 1px 3px rgba(0,0,0,0.05); }
+.settings-card .hint { font-size:12px; color:#888; line-height:1.6; margin:4px 0 12px; }
+.settings-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.settings-full { grid-column: 1 / -1; }
+.settings-actions { display:flex; gap:8px; margin-top:12px; flex-wrap:wrap; }
+.settings-toggle { display:flex; align-items:center; gap:8px; font-size:14px; color:#555; }
+.settings-color-row { display:flex; gap:8px; align-items:center; }
+.settings-color-row input[type="color"] { width:48px; height:38px; padding:2px; }
+@media (max-width:540px) { .settings-grid { grid-template-columns:1fr; } }
+body { background: var(--app-bg); }
+header, .tab.active, .filter-chip.active, .btn-primary, .fab-btn, .toast, .pomo-btn-primary, .pomo-progress-bar, .task-date-btn.active { background: var(--brand-color) !important; }
+.stat-num, .modal-title, .section-title, .template-label, .pomo-status, .pomo-stats strong { color: var(--brand-color) !important; }
+.search-box:focus, .form-group input:focus, .form-group select:focus, .form-group textarea:focus, .pomo-time-row input:focus, .task-date-panel input:focus { border-color: var(--brand-color) !important; }
+.task-card { border-left-color: var(--brand-color) !important; }
+.fab-btn { box-shadow: 0 4px 16px rgba(var(--brand-color-rgb),0.28) !important; }
+
+
+
+/* User font size controls */
+body, input, select, textarea, button { font-size: var(--app-font-size, 16px); }
+.tab { font-size: calc(var(--app-font-size, 16px) * 0.78) !important; }
+.stat-num { font-size: calc(var(--app-font-size, 16px) * 1.25) !important; }
+.stat-label { font-size: calc(var(--app-font-size, 16px) * 0.68) !important; }
+.card-name { font-size: calc(var(--app-font-size, 16px) * 0.98) !important; }
+.card-info, .card-need, .task-action, .pomo-stats, .settings-card .hint { font-size: calc(var(--app-font-size, 16px) * 0.82) !important; }
+.card-time, .task-time, .card-uid, .template-label { font-size: calc(var(--app-font-size, 16px) * 0.72) !important; }
+.btn, .filter-chip, .task-date-btn { font-size: calc(var(--app-font-size, 16px) * 0.78) !important; }
+.form-group label, .task-date-panel label, .pomo-status, .section-title { font-size: calc(var(--app-font-size, 16px) * 0.88) !important; }
+.template-item, .empty, .alert-bar { font-size: calc(var(--app-font-size, 16px) * 0.86) !important; }
+.font-slider-row { display:flex; align-items:center; gap:10px; }
+.font-slider-row input[type="range"] { flex:1; }
+.font-size-value { min-width:48px; text-align:right; font-size:13px; color:#555; }
 
 a { color: #4A86E8; }
 hr { border: none; border-top: 1px solid #E5DDC8; margin: 12px 0; }
@@ -139,6 +193,7 @@ hr { border: none; border-top: 1px solid #E5DDC8; margin: 12px 0; }
     <div style="text-align:right">
       <div id="syncStatus" style="font-size:11px; opacity:0.7; margin-bottom:4px">準備中...</div>
       <button onclick="syncFromCloud()" style="background:rgba(255,255,255,0.15); color:white; border:none; padding:5px 10px; border-radius:6px; font-size:11px; cursor:pointer">🔄 同步</button>
+      <button id="installBtn" onclick="installApp()" style="display:none; margin-top:5px; background:rgba(255,255,255,0.15); color:white; border:none; padding:5px 10px; border-radius:6px; font-size:11px; cursor:pointer">📲 安裝</button>
     </div>
   </div>
 </header>
@@ -156,10 +211,19 @@ hr { border: none; border-top: 1px solid #E5DDC8; margin: 12px 0; }
   <div class="tab active" data-view="tasks">待辦<span class="badge" id="taskBadge" style="display:none">0</span></div>
   <div class="tab" data-view="list">名單</div>
   <div class="tab" data-view="templates">範本</div>
-  <div class="tab" data-view="pomodoro">🐱</div>
+  <div class="tab" data-view="pomodoro" id="pomodoroTab">專注</div>
+  <div class="tab" data-view="settings">設定</div>
 </div>
 
 <div id="tasksView">
+  <div class="task-date-panel">
+    <label>查看日期 <input type="date" id="taskDateInput"></label>
+    <button class="task-date-btn active" id="taskTodayBtn" onclick="setTaskDateToday()">今天</button>
+    <button class="task-date-btn" onclick="setTaskDateTomorrow()">明天</button>
+    <button class="task-date-btn" id="taskRealtimeBtn" onclick="setTaskRealtime()">即時待辦</button>
+    <button class="task-date-btn" onclick="clearCompletedTasks()">清除已完成紀錄</button>
+  </div>
+  <div class="task-date-hint" id="taskDateHint"></div>
   <div id="tasksList"></div>
 </div>
 
@@ -199,53 +263,9 @@ hr { border: none; border-top: 1px solid #E5DDC8; margin: 12px 0; }
   <div class="pomo-card">
     <div class="pomo-status" id="pomoStatus">準備工作</div>
     <div class="pomo-cat" id="pomoCat">
-      <svg viewBox="0 0 200 200" width="160" height="160">
-        <!-- Cat body -->
-        <ellipse id="catBody" cx="100" cy="135" rx="50" ry="42" fill="#E8C9A0"/>
-        <!-- Cat head -->
-        <circle id="catHead" cx="100" cy="85" r="42" fill="#E8C9A0"/>
-        <!-- Ears -->
-        <polygon id="earL" points="68,55 60,30 85,50" fill="#E8C9A0"/>
-        <polygon id="earR" points="132,55 140,30 115,50" fill="#E8C9A0"/>
-        <polygon points="71,52 67,38 80,50" fill="#D89B7A"/>
-        <polygon points="129,52 133,38 120,50" fill="#D89B7A"/>
-        <!-- Eyes (open by default) -->
-        <g id="eyesOpen">
-          <circle cx="85" cy="82" r="5" fill="#2C2C2C"/>
-          <circle cx="115" cy="82" r="5" fill="#2C2C2C"/>
-          <circle cx="86" cy="80" r="1.5" fill="white"/>
-          <circle cx="116" cy="80" r="1.5" fill="white"/>
-        </g>
-        <!-- Eyes (closed - sleeping, hidden by default) -->
-        <g id="eyesClosed" style="display:none">
-          <path d="M 78 82 Q 85 78 92 82" stroke="#2C2C2C" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-          <path d="M 108 82 Q 115 78 122 82" stroke="#2C2C2C" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-        </g>
-        <!-- Nose -->
-        <polygon points="100,93 96,97 104,97" fill="#D89B7A"/>
-        <!-- Mouth -->
-        <path d="M 100 97 Q 95 102 90 99" stroke="#2C2C2C" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-        <path d="M 100 97 Q 105 102 110 99" stroke="#2C2C2C" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-        <!-- Whiskers -->
-        <line x1="65" y1="95" x2="80" y2="97" stroke="#2C2C2C" stroke-width="1" stroke-linecap="round"/>
-        <line x1="65" y1="100" x2="80" y2="100" stroke="#2C2C2C" stroke-width="1" stroke-linecap="round"/>
-        <line x1="135" y1="95" x2="120" y2="97" stroke="#2C2C2C" stroke-width="1" stroke-linecap="round"/>
-        <line x1="135" y1="100" x2="120" y2="100" stroke="#2C2C2C" stroke-width="1" stroke-linecap="round"/>
-        <!-- Tail -->
-        <path id="catTail" d="M 145 140 Q 175 130 170 100" stroke="#E8C9A0" stroke-width="14" fill="none" stroke-linecap="round"/>
-        <!-- Z's for sleeping (hidden by default) -->
-        <g id="sleepZ" style="display:none">
-          <text x="135" y="55" font-size="14" fill="#888" font-weight="500">z</text>
-          <text x="148" y="42" font-size="18" fill="#666" font-weight="500">Z</text>
-          <text x="162" y="28" font-size="22" fill="#444" font-weight="500">Z</text>
-        </g>
-        <!-- Tomato (work mode, hidden by default) -->
-        <g id="catTomato" style="display:none">
-          <circle cx="50" cy="155" r="14" fill="#D85A30"/>
-          <path d="M 45 145 Q 50 142 55 145" stroke="#3B6D11" stroke-width="2" fill="#3B6D11"/>
-          <ellipse cx="50" cy="143" rx="3" ry="2" fill="#3B6D11"/>
-        </g>
-      </svg>
+      <div class="pomo-cat-frame">
+        <img id="pomoCatImg" class="pomo-cat-image" src="cat_idle.png" alt="美短貓番茄鐘角色">
+      </div>
     </div>
     <div class="pomo-time" id="pomoTime">25:00</div>
     <div class="pomo-progress">
@@ -257,6 +277,79 @@ hr { border: none; border-top: 1px solid #E5DDC8; margin: 12px 0; }
     </div>
     <div class="pomo-stats">
       今日完成 <strong id="pomoCount">0</strong> 個番茄鐘
+    </div>
+  </div>
+</div>
+
+
+<div id="settingsView" style="display:none">
+  <div class="settings-card">
+    <div class="section-title" style="margin-top:0">第一次使用設定</div>
+    <div class="hint">每位顧問請填入自己的資料與 Apps Script URL。這些設定只會存在自己的瀏覽器裡，不會和其他顧問共用。</div>
+    <div class="settings-grid">
+      <div class="form-group">
+        <label>顧問名稱</label>
+        <input type="text" id="setConsultantName" placeholder="例如：Helga">
+      </div>
+      <div class="form-group">
+        <label>品牌色</label>
+        <div class="settings-color-row">
+          <input type="color" id="setBrandColor" value="#424A5A">
+          <input type="text" id="setBrandColorText" placeholder="#424A5A">
+        </div>
+      </div>
+      <div class="form-group settings-full">
+        <label>字體大小</label>
+        <div class="font-slider-row">
+          <input type="range" id="setFontSize" min="14" max="22" step="1" value="16" oninput="previewFontSize(this.value)">
+          <span class="font-size-value" id="fontSizeValue">16px</span>
+        </div>
+      </div>
+      <div class="form-group settings-full">
+        <label>Apps Script URL / 同步網址</label>
+        <input type="url" id="setSyncUrl" placeholder="貼上自己的 Apps Script Web App URL">
+      </div>
+      <div class="form-group">
+        <label>預設簽名</label>
+        <input type="text" id="setDefaultSignature" placeholder="例如：Helga">
+      </div>
+      <div class="form-group">
+        <label>課後訊息署名</label>
+        <input type="text" id="setPostClassSignature" placeholder="例如：Helga">
+      </div>
+    </div>
+  </div>
+
+  <div class="settings-card">
+    <div class="section-title" style="margin-top:0">提醒時間</div>
+    <div class="hint">可依顧問習慣調整待辦與日曆提醒時間。</div>
+    <div class="settings-grid">
+      <div class="form-group">
+        <label>課前一天提醒（分鐘前）</label>
+        <input type="number" id="setPreDayMin" min="60" max="2880" value="1440">
+      </div>
+      <div class="form-group">
+        <label>課前自我提醒（分鐘前）</label>
+        <input type="number" id="setPreClassMin" min="5" max="180" value="30">
+      </div>
+      <div class="form-group">
+        <label>課後關懷（分鐘後）</label>
+        <input type="number" id="setPostCareMin" min="5" max="240" value="30">
+      </div>
+      <div class="form-group">
+        <label>24H Log 日曆提醒（距體驗課幾小時後）</label>
+        <input type="number" id="setLogHours" min="1" max="48" value="23">
+      </div>
+    </div>
+    <label class="settings-toggle"><input type="checkbox" id="setPomodoroEnabled" checked> 啟用專注番茄鐘</label>
+  </div>
+
+  <div class="settings-card">
+    <div class="section-title" style="margin-top:0">設定操作</div>
+    <div class="settings-actions">
+      <button class="btn btn-primary" onclick="saveAppSettings()">儲存設定</button>
+      <button class="btn btn-second" onclick="testSyncUrl()">測試同步</button>
+      <button class="btn btn-second" onclick="copySetupSummary()">複製設定摘要</button>
     </div>
   </div>
 </div>
@@ -343,10 +436,202 @@ hr { border: none; border-top: 1px solid #E5DDC8; margin: 12px 0; }
 
 <script>
 const STORAGE_KEY = 'at_students_v1';
+const SETTINGS_KEY = 'at_manager_settings_v1';
+const COMPLETED_TASKS_KEY = 'at_manager_completed_tasks_v1';
+const DIRTY_IDS_KEY = 'at_manager_dirty_student_ids_v1';
+const LAST_LOCAL_SAVE_KEY = 'at_manager_last_local_save_v1';
 let students = [];
 let currentView = 'tasks';
 let currentFilter = 'all';
 let editingId = null;
+let taskViewMode = 'date'; // date / realtime
+let selectedTaskDate = '';
+
+const DEFAULT_SETTINGS = {
+  consultantName: 'Helga',
+  syncUrl: '',
+  defaultSignature: 'Helga',
+  postClassSignature: 'Helga',
+  brandColor: '#424A5A',
+  fontSize: 16,
+  preDayMin: 1440,
+  preClassMin: 30,
+  postCareMin: 30,
+  logHours: 23,
+  pomodoroEnabled: true
+};
+let appSettings = loadAppSettings();
+let completedTaskKeys = loadCompletedTaskKeys();
+
+function loadCompletedTaskKeys() {
+  try {
+    const raw = localStorage.getItem(COMPLETED_TASKS_KEY);
+    return new Set(raw ? JSON.parse(raw) : []);
+  } catch (e) {
+    return new Set();
+  }
+}
+
+function saveCompletedTaskKeys() {
+  localStorage.setItem(COMPLETED_TASKS_KEY, JSON.stringify([...completedTaskKeys]));
+}
+
+function taskKey(student, type, reminderAt) {
+  const sid = student?.id || student?.uid || student?.name || 'unknown';
+  const iso = new Date(reminderAt).toISOString();
+  return `${sid}|${type}|${iso}`;
+}
+
+function escapeJsString(str) {
+  return String(str || '').replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/\n/g, '\\n').replace(/\r/g, '');
+}
+
+function completeTask(key) {
+  if (!key) return;
+  completedTaskKeys.add(key);
+  saveCompletedTaskKeys();
+  render();
+  showToast('已完成，待辦已移除');
+}
+
+function clearCompletedTasks() {
+  if (!confirm('確定要清除所有已完成待辦紀錄？清除後，符合時間條件的待辦可能會再次出現。')) return;
+  completedTaskKeys.clear();
+  saveCompletedTaskKeys();
+  render();
+  showToast('已清除完成紀錄');
+}
+
+function loadAppSettings() {
+  try {
+    const raw = localStorage.getItem(SETTINGS_KEY);
+    return { ...DEFAULT_SETTINGS, ...(raw ? JSON.parse(raw) : {}) };
+  } catch (e) {
+    return { ...DEFAULT_SETTINGS };
+  }
+}
+
+function getSheetsApiUrl() {
+  return (appSettings.syncUrl || '').trim();
+}
+
+function hexToRgb(hex) {
+  const clean = String(hex || '#424A5A').replace('#','');
+  const num = parseInt(clean.length === 3 ? clean.split('').map(x=>x+x).join('') : clean, 16);
+  if (Number.isNaN(num)) return '66,74,90';
+  return `${(num>>16)&255},${(num>>8)&255},${num&255}`;
+}
+
+function applyAppSettings() {
+  const color = appSettings.brandColor || '#424A5A';
+  document.documentElement.style.setProperty('--brand-color', color);
+  document.documentElement.style.setProperty('--brand-color-rgb', hexToRgb(color));
+  document.documentElement.style.setProperty('--app-font-size', (appSettings.fontSize || 16) + 'px');
+  const theme = document.querySelector('meta[name="theme-color"]');
+  if (theme) theme.setAttribute('content', color);
+  const pomoTab = document.getElementById('pomodoroTab');
+  if (pomoTab) pomoTab.style.display = appSettings.pomodoroEnabled ? '' : 'none';
+  if (!appSettings.pomodoroEnabled && currentView === 'pomodoro') switchView('tasks');
+}
+
+function populateSettingsForm() {
+  const set = (id, val) => { const el = document.getElementById(id); if (el) el.value = val ?? ''; };
+  set('setConsultantName', appSettings.consultantName);
+  set('setSyncUrl', appSettings.syncUrl);
+  set('setDefaultSignature', appSettings.defaultSignature);
+  set('setPostClassSignature', appSettings.postClassSignature);
+  set('setBrandColor', appSettings.brandColor);
+  set('setBrandColorText', appSettings.brandColor);
+  set('setFontSize', appSettings.fontSize || 16);
+  const fontSizeValue = document.getElementById('fontSizeValue');
+  if (fontSizeValue) fontSizeValue.textContent = (appSettings.fontSize || 16) + 'px';
+  set('setPreDayMin', appSettings.preDayMin);
+  set('setPreClassMin', appSettings.preClassMin);
+  set('setPostCareMin', appSettings.postCareMin);
+  set('setLogHours', appSettings.logHours);
+  const pomo = document.getElementById('setPomodoroEnabled');
+  if (pomo) pomo.checked = !!appSettings.pomodoroEnabled;
+}
+
+function readSettingsForm() {
+  const val = id => (document.getElementById(id)?.value || '').trim();
+  const num = (id, fallback) => {
+    const n = parseInt(val(id), 10);
+    return Number.isFinite(n) ? n : fallback;
+  };
+  const colorText = val('setBrandColorText') || val('setBrandColor') || '#424A5A';
+  return {
+    consultantName: val('setConsultantName') || '顧問',
+    syncUrl: val('setSyncUrl'),
+    defaultSignature: val('setDefaultSignature') || val('setConsultantName') || '顧問',
+    postClassSignature: val('setPostClassSignature') || val('setDefaultSignature') || val('setConsultantName') || '顧問',
+    brandColor: /^#[0-9a-fA-F]{6}$/.test(colorText) ? colorText : '#424A5A',
+    fontSize: Math.max(14, Math.min(22, num('setFontSize', 16))),
+    preDayMin: Math.max(60, Math.min(2880, num('setPreDayMin', 1440))),
+    preClassMin: Math.max(5, Math.min(180, num('setPreClassMin', 30))),
+    postCareMin: Math.max(5, Math.min(240, num('setPostCareMin', 30))),
+    logHours: Math.max(1, Math.min(48, num('setLogHours', 23))),
+    pomodoroEnabled: !!document.getElementById('setPomodoroEnabled')?.checked
+  };
+}
+
+function previewFontSize(value) {
+  const size = Math.max(14, Math.min(22, parseInt(value, 10) || 16));
+  document.documentElement.style.setProperty('--app-font-size', size + 'px');
+  const el = document.getElementById('fontSizeValue');
+  if (el) el.textContent = size + 'px';
+}
+
+function saveAppSettings() {
+  appSettings = readSettingsForm();
+  localStorage.setItem(SETTINGS_KEY, JSON.stringify(appSettings));
+  applyAppSettings();
+  populateSettingsForm();
+  render();
+  showToast('設定已儲存');
+}
+
+function renderSettings() {
+  populateSettingsForm();
+}
+
+async function testSyncUrl() {
+  const url = (document.getElementById('setSyncUrl')?.value || '').trim();
+  if (!url) { alert('請先貼上 Apps Script URL'); return; }
+  try {
+    const res = await fetch(url + '?action=list');
+    const data = await res.json();
+    alert(data.students ? '同步測試成功，可以讀取資料。' : '有連上，但回傳格式不含 students，請檢查 Apps Script。');
+  } catch (e) {
+    alert('同步測試失敗：請確認 Apps Script 已部署為 Web App，且網址正確。');
+  }
+}
+
+function copySetupSummary() {
+  const summary = `AT 學員管理設定\n顧問名稱：${appSettings.consultantName}\n同步網址：${appSettings.syncUrl ? '已設定' : '未設定'}\n預設簽名：${appSettings.defaultSignature}\n課後署名：${appSettings.postClassSignature}\n品牌色：${appSettings.brandColor}\n字體大小：${appSettings.fontSize || 16}px\n課前一天提醒：${appSettings.preDayMin} 分鐘前\n課前自我提醒：${appSettings.preClassMin} 分鐘前\n課後關懷：${appSettings.postCareMin} 分鐘後\n24H Log：課程開始後即進入待辦，24 小時內完成；日曆提醒設於 ${appSettings.logHours} 小時後\n番茄鐘：${appSettings.pomodoroEnabled ? '啟用' : '關閉'}`;
+  copyText(summary);
+}
+
+function applyTemplateFields(text, s = {}, label = '') {
+  const isPostClass = /課後|關懷|24 小時|一週後/.test(label);
+  const signature = isPostClass ? appSettings.postClassSignature : appSettings.defaultSignature;
+  return String(text || '')
+    .replace(/Helga/g, signature || '')
+    .replace(/\[顧問名稱\]/g, appSettings.consultantName || '')
+    .replace(/\[姓名\]/g, s.name || '')
+    .replace(/\[老師姓名\]/g, s.teacherName || '')
+    .replace(/\[上課時間\]/g, s.classTime ? fmt(s.classTime) : '')
+    .replace(/\[時間\]/g, s.classTime ? fmt(s.classTime) : '')
+    .replace(/\[登入方式\]/g, s.loginType || 'Email')
+    .replace(/\[老師連結\]/g, s.teacherUrl || '');
+}
+
+function copyTemplateByIndex(i) {
+  const tpl = TEMPLATES[i];
+  if (!tpl) return;
+  copyText(applyTemplateFields(tpl.text, {}, tpl.label));
+}
+
 
 // LINE message templates
 const TEMPLATES = [
@@ -389,13 +674,74 @@ const TEMPLATES = [
 ];
 
 // === Cloud Storage Configuration ===
-const SHEETS_API_URL = 'https://script.google.com/macros/s/AKfycbxMjlkikhBN-olIsFiJKvUQnSutlq0b9_jytBJNztlCXbevn4LU8E7o7lRY4ktyE-iTEA/exec';
 
 let isSyncing = false;
 let lastSyncTime = null;
 
 // === Storage ===
+
+function normalizeStudentRecord(s) {
+  return {
+    id: String(s.id || ''),
+    name: String(s.name || ''),
+    uid: String(s.uid || ''),
+    phone: String(s.phone || ''),
+    loginType: String(s.loginType || ''),
+    lineId: String(s.lineId || ''),
+    need: String(s.need || ''),
+    teacherName: String(s.teacherName || ''),
+    teacherUrl: String(s.teacherUrl || ''),
+    classTime: String(s.classTime || ''),
+    status: String(s.status || 'new'),
+    createdAt: String(s.createdAt || ''),
+    updatedAt: String(s.updatedAt || '')
+  };
+}
+
+function getDirtyIds() {
+  try { return new Set(JSON.parse(localStorage.getItem(DIRTY_IDS_KEY) || '[]')); }
+  catch (e) { return new Set(); }
+}
+function setDirtyIds(ids) {
+  localStorage.setItem(DIRTY_IDS_KEY, JSON.stringify([...ids]));
+}
+function getDeletedIds() {
+  try { return new Set(JSON.parse(localStorage.getItem(DELETED_IDS_KEY) || '[]')); }
+  catch (e) { return new Set(); }
+}
+function setDeletedIds(ids) {
+  localStorage.setItem(DELETED_IDS_KEY, JSON.stringify([...ids]));
+}
+function markStudentDeleted(id) {
+  if (!id) return;
+  const ids = getDeletedIds();
+  ids.add(id);
+  setDeletedIds(ids);
+  localStorage.setItem(LAST_LOCAL_SAVE_KEY, String(Date.now()));
+}
+function markStudentDirty(id) {
+  if (!id) return;
+  const ids = getDirtyIds();
+  ids.add(id);
+  setDirtyIds(ids);
+  localStorage.setItem(LAST_LOCAL_SAVE_KEY, String(Date.now()));
+}
+function clearStudentDirty(id) {
+  const ids = getDirtyIds();
+  ids.delete(id);
+  setDirtyIds(ids);
+}
+function hasRecentLocalSave() {
+  const t = Number(localStorage.getItem(LAST_LOCAL_SAVE_KEY) || 0);
+  return t && (Date.now() - t < 5 * 60 * 1000);
+}
+function saveLocalStudents() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(students));
+}
+
 async function load() {
+  applyAppSettings();
+  populateSettingsForm();
   // Step 1: load from local cache first (instant display)
   try {
     const data = localStorage.getItem(STORAGE_KEY);
@@ -409,34 +755,56 @@ async function load() {
 }
 
 async function syncFromCloud() {
-  if (!SHEETS_API_URL || isSyncing) return;
+  const apiUrl = getSheetsApiUrl();
+  if (!apiUrl) { updateSyncStatus('未設定同步'); return; }
+  if (isSyncing) return;
+
   isSyncing = true;
   updateSyncStatus('同步中...');
   
   try {
-    const res = await fetch(SHEETS_API_URL + '?action=list');
+    const localBefore = Array.isArray(students) ? students.map(normalizeStudentRecord).filter(s => s.id) : [];
+    const localMap = new Map(localBefore.map(s => [s.id, s]));
+    const dirtyIds = getDirtyIds();
+
+    const res = await fetch(apiUrl + '?action=list&ts=' + Date.now());
     const data = await res.json();
     if (data.students) {
-      // Convert cloud data: ensure all fields are strings/proper types
-      students = data.students.map(s => ({
-        id: String(s.id || ''),
-        name: String(s.name || ''),
-        uid: String(s.uid || ''),
-        phone: String(s.phone || ''),
-        loginType: String(s.loginType || ''),
-        lineId: String(s.lineId || ''),
-        need: String(s.need || ''),
-        teacherName: String(s.teacherName || ''),
-        teacherUrl: String(s.teacherUrl || ''),
-        classTime: String(s.classTime || ''),
-        status: String(s.status || 'new'),
-        createdAt: String(s.createdAt || '')
-      })).filter(s => s.id); // remove empty rows
-      
-      // Update local cache
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(students));
+      const deletedIds = getDeletedIds();
+      const cloudStudents = data.students.map(normalizeStudentRecord).filter(s => s.id && !deletedIds.has(s.id));
+      const cloudMap = new Map(cloudStudents.map(s => [s.id, s]));
+
+      // Merge rule: cloud can update existing records, but it must never erase local-only records.
+      // This fixes the case where a new lead appears locally, then disappears after copy/refresh because cloud is delayed.
+      let merged = cloudStudents.map(cloud => {
+        if (dirtyIds.has(cloud.id) && localMap.has(cloud.id)) return localMap.get(cloud.id);
+        return cloud;
+      });
+
+      // Always preserve local records that are not yet visible in cloud, unless the user explicitly deleted them.
+      localBefore.forEach(local => {
+        if (!cloudMap.has(local.id) && !deletedIds.has(local.id)) {
+          merged.push(local);
+        }
+      });
+
+      // De-duplicate by id.
+      const mergedMap = new Map();
+      merged.forEach(s => mergedMap.set(s.id, s));
+      students = [...mergedMap.values()];
+
+      // Clear dirty flag only when cloud already contains that record id.
+      dirtyIds.forEach(id => { if (cloudMap.has(id)) clearStudentDirty(id); });
+
+      saveLocalStudents();
       lastSyncTime = new Date();
-      updateSyncStatus('已同步 ' + lastSyncTime.toLocaleTimeString('zh-TW', {hour:'2-digit', minute:'2-digit'}));
+
+      if (getDirtyIds().size > 0 || students.length !== cloudStudents.length) {
+        updateSyncStatus('本機已保存，雲端同步中...');
+        setTimeout(() => pushToCloud(), 800);
+      } else {
+        updateSyncStatus('已同步 ' + lastSyncTime.toLocaleTimeString('zh-TW', {hour:'2-digit', minute:'2-digit'}));
+      }
       render();
     }
   } catch (e) {
@@ -447,30 +815,37 @@ async function syncFromCloud() {
   }
 }
 
-async function save() {
-  // Save to local first (instant)
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(students));
-  
-  // Sync to cloud
-  if (!SHEETS_API_URL) return;
+async function pushToCloud() {
+  const apiUrl = getSheetsApiUrl();
+  if (!apiUrl) { updateSyncStatus('未設定同步'); return; }
+  if (isSyncing) return;
+
   isSyncing = true;
   updateSyncStatus('儲存中...');
-  
   try {
-    const res = await fetch(SHEETS_API_URL, {
+    await fetch(apiUrl, {
       method: 'POST',
-      mode: 'no-cors', // Apps Script requires no-cors for POST
+      mode: 'no-cors',
       headers: { 'Content-Type': 'text/plain' },
       body: JSON.stringify({ action: 'save', students: students })
     });
     lastSyncTime = new Date();
-    updateSyncStatus('已儲存 ' + lastSyncTime.toLocaleTimeString('zh-TW', {hour:'2-digit', minute:'2-digit'}));
+    updateSyncStatus('已送出儲存 ' + lastSyncTime.toLocaleTimeString('zh-TW', {hour:'2-digit', minute:'2-digit'}));
+    // Apps Script / Google Sheet may take a moment to reflect the write. Verify later, do not overwrite immediately.
+    setTimeout(() => { if (!document.hidden) syncFromCloud(); }, 8000);
   } catch (e) {
     console.error('Save failed:', e);
-    updateSyncStatus('儲存失敗（本地已保存）');
+    updateSyncStatus('儲存失敗（本機已保存）');
   } finally {
     isSyncing = false;
   }
+}
+
+async function save() {
+  // Save to local first (instant). This prevents refresh from losing a newly added lead.
+  saveLocalStudents();
+  localStorage.setItem(LAST_LOCAL_SAVE_KEY, String(Date.now()));
+  await pushToCloud();
 }
 
 function updateSyncStatus(msg) {
@@ -483,7 +858,27 @@ function uid() { return 's_' + Date.now() + '_' + Math.random().toString(36).sli
 function fmt(dt) {
   if (!dt) return '';
   const d = new Date(dt);
-  return d.toLocaleString('zh-TW', { month:'numeric', day:'numeric', hour:'2-digit', minute:'2-digit', hour12:false });
+  const weekdays = ['日','一','二','三','四','五','六'];
+  const month = d.getMonth() + 1;
+  const day = d.getDate();
+  const week = weekdays[d.getDay()];
+  const hour = String(d.getHours()).padStart(2, '0');
+  const minute = String(d.getMinutes()).padStart(2, '0');
+  return `${month}/${day}（${week}）${hour}:${minute}`;
+}
+
+function dateInputValue(d) {
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${y}-${m}-${day}`;
+}
+function sameDateByInput(d, inputValue) {
+  return dateInputValue(new Date(d)) === inputValue;
+}
+function fmtTime(dt) {
+  const d = new Date(dt);
+  return d.toLocaleTimeString('zh-TW', { hour:'2-digit', minute:'2-digit', hour12:false });
 }
 function statusName(s) {
   return {new:'新名單',contacted:'已聯繫',booked:'已約課',done:'體驗完成',log:'已 log',converted:'體轉正',lost:'流失'}[s] || s;
@@ -497,14 +892,17 @@ function showToast(msg) {
 
 // === Views ===
 function switchView(v) {
+  if (v === 'pomodoro' && !appSettings.pomodoroEnabled) v = 'settings';
   currentView = v;
   document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.view === v));
   document.getElementById('tasksView').style.display = v === 'tasks' ? 'block' : 'none';
   document.getElementById('listView').style.display = v === 'list' ? 'block' : 'none';
   document.getElementById('templatesView').style.display = v === 'templates' ? 'block' : 'none';
   document.getElementById('pomodoroView').style.display = v === 'pomodoro' ? 'block' : 'none';
+  const settingsView = document.getElementById('settingsView');
+  if (settingsView) settingsView.style.display = v === 'settings' ? 'block' : 'none';
   // Hide FAB on pomodoro view
-  document.querySelector('.fab').style.display = v === 'pomodoro' ? 'none' : 'block';
+  document.querySelector('.fab').style.display = (v === 'pomodoro' || v === 'settings') ? 'none' : 'block';
   render();
 }
 
@@ -525,113 +923,211 @@ function updateStats() {
   const urgent = getPendingTasks().filter(t => t.urgent).length;
   const alertBar = document.getElementById('alertBar');
   if (urgent > 0) {
-    alertBar.innerHTML = `⏰ <strong>${urgent} 件待辦超時或快到期</strong>，請優先處理`;
+    alertBar.innerHTML = `⏰ <strong>${urgent} 件待辦已逾期或快到期</strong>，請優先處理`;
     alertBar.classList.add('show');
   } else alertBar.classList.remove('show');
 }
 
 // === Tasks ===
-function getPendingTasks() {
-  const now = new Date();
+function buildReminderTasks() {
   const tasks = [];
 
   students.forEach(s => {
     if (!s.classTime) return;
     const ct = new Date(s.classTime);
-    const diffMs = ct - now;
-    const diffH = diffMs / (1000 * 60 * 60);
-    const afterH = -diffH; // hours after class
 
-    // 課前一天提醒學員（上課前 20-30 小時觸發）
-    if (s.status === 'booked' && diffH > 18 && diffH <= 30) {
+    const pushTask = (type, action, offsetMin, options = {}) => {
+      const reminderAt = new Date(ct.getTime() + offsetMin * 60000);
+      const key = taskKey(s, type, reminderAt);
       tasks.push({
+        key,
         student: s,
-        type: '課前一天提醒學員',
-        action: '傳送上課前提醒訊息',
+        type,
+        action,
         time: ct,
-        sortKey: ct.getTime() - 1000000,
-        urgent: diffH < 22,
-        dueSoon: diffH < 28
+        reminderAt,
+        deadlineAt: options.deadlineAt || null,
+        sortKey: (options.sortAt || reminderAt).getTime(),
+        urgent: !!options.urgent,
+        dueSoon: !!options.dueSoon,
+        calendarOffsetMin: offsetMin,
+        calendarDur: options.dur || 10,
+        isLogTask: !!options.isLogTask
       });
+    };
+
+    if (s.status === 'booked') {
+      pushTask('課前一天提醒學員', '傳送上課前提醒訊息', -appSettings.preDayMin, { dur: 15 });
+      pushTask(`課前 ${appSettings.preClassMin} 分鐘自我提醒`, '注意 LINE 訊息，確認學員可順利進教室', -appSettings.preClassMin, { dur: 5 });
+      pushTask(`課後 ${appSettings.postCareMin} 分鐘關懷`, '傳送關懷訊息', appSettings.postCareMin, { dur: 10 });
     }
 
-    // 課前 30 分鐘提醒
-    if (s.status === 'booked' && diffH > 0 && diffH <= 0.6) {
-      tasks.push({
-        student: s,
-        type: '課前 30 分鐘',
-        action: '注意 LINE 訊息',
-        time: ct,
-        sortKey: ct.getTime() - 1,
-        urgent: true
-      });
+    if (s.status === 'done') {
+      pushTask(`課後 ${appSettings.postCareMin} 分鐘關懷`, '傳送關懷訊息', appSettings.postCareMin, { dur: 10 });
     }
 
-    // 課後 30 分鐘關懷
-    if (s.status === 'done' && afterH >= 0.5 && afterH <= 2) {
-      tasks.push({
-        student: s,
-        type: '課後 30 分鐘關懷',
-        action: '傳送關懷訊息',
-        time: ct,
-        sortKey: ct.getTime(),
-        urgent: afterH > 1.5,
-        dueSoon: true
-      });
-    }
-
-    // 課後 24h log
-    if ((s.status === 'done' || s.status === 'contacted') && afterH > 1 && afterH <= 26) {
-      tasks.push({
-        student: s,
-        type: '24H Log 跟進',
-        action: '完成業務系統紀錄',
-        time: ct,
-        sortKey: ct.getTime() + 0.5,
-        urgent: afterH > 20,
-        dueSoon: afterH > 12
+    // 24H Log：體驗課時間一到就進入待辦，截止時間為體驗課時間 + 24 小時。
+    // 這符合「課後 24 小時內完成 log」；完成後按「完成並標記已 log」才會消失。
+    if (!['log', 'converted', 'lost'].includes(s.status)) {
+      const deadlineAt = new Date(ct.getTime() + 24 * 60 * 60 * 1000);
+      pushTask('24H Log 跟進', '課後 24 小時內完成業務系統紀錄', 0, {
+        dur: 30,
+        isLogTask: true,
+        deadlineAt,
+        sortAt: deadlineAt
       });
     }
   });
 
-  return tasks.sort((a,b) => a.sortKey - b.sortKey);
+  return tasks.filter(t => !completedTaskKeys.has(t.key)).sort((a, b) => a.sortKey - b.sortKey);
+}
+
+function decorateTaskTiming(tasks) {
+  const now = new Date();
+  return tasks.map(t => {
+    if (t.isLogTask) {
+      const active = now >= t.reminderAt;
+      const overdue = now > t.deadlineAt;
+      const dueSoon = active && !overdue && (t.deadlineAt - now) <= 6 * 60 * 60000;
+      return { ...t, active, overdue, urgent: overdue || dueSoon, dueSoon };
+    }
+    return {
+      ...t,
+      overdue: t.reminderAt <= now,
+      urgent: t.reminderAt <= now,
+      dueSoon: t.reminderAt > now && (t.reminderAt - now) <= 60 * 60000
+    };
+  }).sort((a,b) => a.sortKey - b.sortKey);
+}
+
+function getPendingTasks() {
+  const now = new Date();
+  const tasks = buildReminderTasks().filter(t => {
+    if (t.isLogTask) {
+      // 課程開始後就顯示，直到使用者完成並標記已 log。
+      return now >= t.reminderAt;
+    }
+
+    const diffMin = (t.reminderAt - now) / 60000;
+    const afterMin = -diffMin;
+
+    if (t.type.includes('課前一天')) return diffMin <= 360 && afterMin <= 360;
+    if (t.type.includes('自我提醒')) return diffMin <= appSettings.preClassMin && afterMin <= 30;
+    if (t.type.includes('關懷')) return diffMin <= appSettings.postCareMin && afterMin <= 90;
+    return false;
+  });
+  return decorateTaskTiming(tasks);
+}
+
+function dayRangeFromInput(inputValue) {
+  const [y, m, d] = String(inputValue || dateInputValue(new Date())).split('-').map(Number);
+  const start = new Date(y, (m || 1) - 1, d || 1, 0, 0, 0, 0);
+  const end = new Date(start.getTime() + 24 * 60 * 60 * 1000);
+  return { start, end };
+}
+
+function getTasksForSelectedDate() {
+  if (!selectedTaskDate) selectedTaskDate = dateInputValue(new Date());
+  const range = dayRangeFromInput(selectedTaskDate);
+  return decorateTaskTiming(buildReminderTasks().filter(t => {
+    if (t.isLogTask) {
+      // 指定日期只要落在「課程開始～24H 截止」區間內，就顯示這筆 Log 待辦。
+      return t.reminderAt < range.end && t.deadlineAt >= range.start;
+    }
+    return sameDateByInput(t.reminderAt, selectedTaskDate);
+  }));
+}
+
+function formatDurationUntil(target) {
+  const now = new Date();
+  const diffMin = Math.round((target - now) / 60000);
+  const abs = Math.abs(diffMin);
+  const h = Math.floor(abs / 60);
+  const m = abs % 60;
+  const text = h > 0 ? `${h} 小時${m ? ' ' + m + ' 分' : ''}` : `${m} 分鐘`;
+  return diffMin >= 0 ? `剩 ${text}` : `已逾期 ${text}`;
 }
 
 function renderTasks() {
   const list = document.getElementById('tasksList');
-  const tasks = getPendingTasks();
+  const tasks = taskViewMode === 'date' ? getTasksForSelectedDate() : getPendingTasks();
+  updateTaskDateControls();
   if (tasks.length === 0) {
-    list.innerHTML = '<div class="empty"><div class="empty-icon">✓</div>目前沒有待辦事項<br><span style="font-size:11px;opacity:0.7">新增學員並設定體驗課時間後，會在這裡顯示提醒</span></div>';
+    const emptyText = taskViewMode === 'date' ? '這一天沒有待辦事項' : '目前沒有即時待辦事項';
+    list.innerHTML = `<div class="empty"><div class="empty-icon">✓</div>${emptyText}<br><span style="font-size:11px;opacity:0.7">新增學員並設定體驗課時間後，會在這裡顯示提醒</span></div>`;
     return;
   }
   list.innerHTML = tasks.map(t => {
     const cls = t.urgent ? 'urgent' : (t.dueSoon ? 'due-soon' : '');
     const timeCls = t.urgent ? 'urgent' : '';
     const now = new Date();
-    const diff = (t.time - now) / (1000 * 60);
     let timeStr;
-    if (diff > 0) {
-      if (diff < 60) timeStr = `${Math.round(diff)} 分鐘後上課`;
-      else if (diff < 60*24) timeStr = `${Math.round(diff/60)} 小時後上課`;
-      else timeStr = `${fmt(t.time)} 上課`;
+    if (t.isLogTask) {
+      timeStr = `課程 ${fmt(t.time)} 起算｜截止 ${fmt(t.deadlineAt)} 前｜${formatDurationUntil(t.deadlineAt)}`;
+    } else if (taskViewMode === 'date') {
+      timeStr = `${t.overdue ? '已逾期｜' : ''}提醒 ${fmtTime(t.reminderAt)}｜課程 ${fmt(t.time)}`;
     } else {
-      const after = -diff;
-      if (after < 60) timeStr = `課後 ${Math.round(after)} 分鐘`;
-      else timeStr = `課後 ${Math.round(after/60)} 小時`;
+      const diff = (t.reminderAt - now) / (1000 * 60);
+      if (diff > 0) {
+        if (diff < 60) timeStr = `${Math.round(diff)} 分鐘後提醒`;
+        else if (diff < 60*24) timeStr = `${Math.round(diff/60)} 小時後提醒`;
+        else timeStr = `${fmt(t.reminderAt)} 提醒`;
+      } else {
+        const after = -diff;
+        if (after < 60) timeStr = `已逾期 ${Math.round(after)} 分鐘`;
+        else timeStr = `已逾期 ${Math.round(after/60)} 小時`;
+      }
     }
     return `
       <div class="task-card ${cls}">
-        <div class="task-name">${t.student.name} <span style="font-size:11px;color:#888;font-weight:normal">[${t.type}]</span></div>
+        <div class="task-name">${t.student.name} <span style="font-size:11px;color:#888;font-weight:normal">[${t.type}]</span>${t.overdue ? '<span class="task-overdue-badge">已逾期</span>' : ''}</div>
         <div class="task-action">${t.action}</div>
         <div class="task-time ${timeCls}">${timeStr}</div>
         <div class="task-buttons">
-          ${t.type.includes('學員') || t.type.includes('關懷') ? `<button class="btn btn-line" onclick="copyTemplate('${t.student.id}','${t.type}')">複製訊息</button>` : ''}
-          ${t.type.includes('Log') ? `<button class="btn btn-primary" onclick="markLogDone('${t.student.id}')">標記已 log</button>` : ''}
+          ${t.type.includes('學員') || t.type.includes('關懷') || t.type.includes('自我提醒') ? `<button class="btn btn-line" onclick="copyTemplate('${t.student.id}','${t.type}')">複製訊息</button>` : ''}
+          ${t.type.includes('Log') ? `<button class="btn btn-primary" onclick="markLogDone('${t.student.id}')">完成並標記已 log</button>` : `<button class="btn btn-primary" onclick="completeTask('${escapeJsString(t.key)}')">完成</button>`}
           <button class="btn btn-edit" onclick="editStudent('${t.student.id}')">編輯</button>
         </div>
       </div>
     `;
   }).join('');
+}
+
+function setTaskDateToday() {
+  taskViewMode = 'date';
+  selectedTaskDate = dateInputValue(new Date());
+  const el = document.getElementById('taskDateInput');
+  if (el) el.value = selectedTaskDate;
+  renderTasks();
+}
+function setTaskDateTomorrow() {
+  taskViewMode = 'date';
+  const d = new Date();
+  d.setDate(d.getDate() + 1);
+  selectedTaskDate = dateInputValue(d);
+  const el = document.getElementById('taskDateInput');
+  if (el) el.value = selectedTaskDate;
+  renderTasks();
+}
+function setTaskRealtime() {
+  taskViewMode = 'realtime';
+  renderTasks();
+}
+function updateTaskDateControls() {
+  const input = document.getElementById('taskDateInput');
+  const hint = document.getElementById('taskDateHint');
+  const todayBtn = document.getElementById('taskTodayBtn');
+  const realtimeBtn = document.getElementById('taskRealtimeBtn');
+  if (!input || !hint) return;
+  if (!selectedTaskDate) selectedTaskDate = dateInputValue(new Date());
+  if (input.value !== selectedTaskDate) input.value = selectedTaskDate;
+  const today = dateInputValue(new Date());
+  const tasks = taskViewMode === 'date' ? getTasksForSelectedDate() : getPendingTasks();
+  hint.textContent = taskViewMode === 'date'
+    ? `正在查看 ${selectedTaskDate} 的待辦，共 ${tasks.length} 件`
+    : `正在查看目前需要處理的即時待辦，共 ${tasks.length} 件`;
+  if (todayBtn) todayBtn.classList.toggle('active', taskViewMode === 'date' && selectedTaskDate === today);
+  if (realtimeBtn) realtimeBtn.classList.toggle('active', taskViewMode === 'realtime');
 }
 
 function markLogDone(id) {
@@ -694,15 +1190,34 @@ function renderList() {
 function renderTemplates() {
   const list = document.getElementById('templateList');
   list.innerHTML = TEMPLATES.map((t, i) => `
-    <div class="template-item" onclick="copyText(\`${t.text.replace(/`/g, '\\`')}\`)">
+    <div class="template-item" onclick="copyTemplateByIndex(${i})">
       <div class="template-label">${t.label}</div>
-      <div class="template-text">${t.text}</div>
+      <div class="template-text">${applyTemplateFields(t.text, {}, t.label)}</div>
     </div>
   `).join('');
 }
 
 function copyText(text) {
-  navigator.clipboard.writeText(text).then(() => showToast('已複製到剪貼簿'));
+  // Copy should never trigger a data refresh that makes newly added leads disappear.
+  saveLocalStudents();
+  const done = () => showToast('已複製到剪貼簿');
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(done).catch(() => fallbackCopyText(text, done));
+  } else {
+    fallbackCopyText(text, done);
+  }
+}
+function fallbackCopyText(text, callback) {
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.left = '-9999px';
+  document.body.appendChild(ta);
+  ta.focus();
+  ta.select();
+  try { document.execCommand('copy'); } catch (e) {}
+  document.body.removeChild(ta);
+  if (callback) callback();
 }
 
 function copyTemplate(studentId, type) {
@@ -711,7 +1226,7 @@ function copyTemplate(studentId, type) {
   let tpl;
   if (type.includes('課前一天提醒') || type.includes('預約確認') || type.includes('24h 提醒學員')) {
     tpl = TEMPLATES.find(t => t.label.includes('完整提醒')) || TEMPLATES.find(t => t.label.includes('預約確認'));
-  } else if (type.includes('30 分鐘自我提醒')) {
+  } else if (type.includes('課前 30') || type.includes('30 分鐘自我提醒')) {
     tpl = TEMPLATES.find(t => t.label.includes('30 分鐘自我提醒'));
   } else if (type.includes('30 分鐘關懷') || type.includes('1 小時關懷')) {
     tpl = TEMPLATES.find(t => t.label.includes('30 分鐘關懷') || t.label.includes('關懷'));
@@ -719,13 +1234,7 @@ function copyTemplate(studentId, type) {
     tpl = TEMPLATES.find(t => t.label.includes('24 小時跟進'));
   }
   if (!tpl) tpl = TEMPLATES[0];
-  let text = tpl.text
-    .replace(/\[姓名\]/g, s.name || '')
-    .replace(/\[老師姓名\]/g, s.teacherName || '')
-    .replace(/\[上課時間\]/g, s.classTime ? fmt(s.classTime) : '')
-    .replace(/\[時間\]/g, s.classTime ? fmt(s.classTime) : '')
-    .replace(/\[登入方式\]/g, s.loginType || 'Email')
-    .replace(/\[老師連結\]/g, s.teacherUrl || '');
+  let text = applyTemplateFields(tpl.text, s, tpl.label);
   copyText(text);
 }
 
@@ -738,13 +1247,7 @@ function copyForStudent(studentId) {
   else if (s.status === 'done') tpl = TEMPLATES.find(t => t.label.includes('關懷'));
   else tpl = TEMPLATES.find(t => t.label.includes('24 小時跟進'));
   if (!tpl) tpl = TEMPLATES[0];
-  let text = tpl.text
-    .replace(/\[姓名\]/g, s.name || '')
-    .replace(/\[老師姓名\]/g, s.teacherName || '')
-    .replace(/\[上課時間\]/g, s.classTime ? fmt(s.classTime) : '')
-    .replace(/\[時間\]/g, s.classTime ? fmt(s.classTime) : '')
-    .replace(/\[登入方式\]/g, s.loginType || 'Email')
-    .replace(/\[老師連結\]/g, s.teacherUrl || '');
+  let text = applyTemplateFields(tpl.text, s, tpl.label);
   copyText(text);
 }
 
@@ -799,30 +1302,133 @@ function callViaEzuc(phone) {
 }
 
 // === Calendar ===
+function buildCalendarEvents(s) {
+  const ct = new Date(s.classTime);
+  const detailExtra = (s.phone ? `\n手機: ${s.phone}` : '')
+    + (s.lineId ? `\nLINE: ${s.lineId}` : '')
+    + (s.teacherName ? `\n老師: ${s.teacherName}` : '')
+    + (s.teacherUrl ? `\n老師連結: ${s.teacherUrl}` : '');
+
+  return [
+    { offsetMin: -appSettings.preDayMin, dur: 15, title: `[課前一天] 提醒 ${s.name} 上課`, desc: '傳送課前提醒訊息（含上課流程、登入方式、優惠資訊）' },
+    { offsetMin: -appSettings.preClassMin, dur: 5, title: `⚠️ [課前${appSettings.preClassMin}分] ${s.name} 即將上課`, desc: '注意 LINE 訊息，確認學員可以順利進教室。' },
+    { offsetMin: appSettings.postCareMin, dur: 10, title: `[課後${appSettings.postCareMin}分關懷] ${s.name}`, desc: '傳送關懷訊息，確認體驗課狀況與老師適配度。' },
+    { offsetMin: appSettings.logHours * 60, dur: 30, title: `[${appSettings.logHours}H Log] ${s.name}`, desc: '完成業務系統紀錄與課後跟進。' },
+  ].map(e => {
+    const start = new Date(ct.getTime() + e.offsetMin * 60000);
+    const end = new Date(start.getTime() + e.dur * 60000);
+    return {
+      title: e.title,
+      start: start.toISOString(),
+      end: end.toISOString(),
+      desc: e.desc + detailExtra
+    };
+  });
+}
+
+function toBase64UrlUnicode(str) {
+  const bytes = new TextEncoder().encode(str);
+  let binary = '';
+  bytes.forEach(b => binary += String.fromCharCode(b));
+  return btoa(binary).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/g, '');
+}
+
 function addToCalendar(id) {
   const s = students.find(x => x.id === id);
-  if (!s || !s.classTime) return;
+  if (!s || !s.classTime) {
+    showToast('請先設定體驗課時間');
+    return;
+  }
 
-  const ct = new Date(s.classTime);
-  // Build all 4 events as separate Google Calendar URLs
-  const events = [
-    { offsetMin: -24*60, dur: 15, title: `[課前一天] 提醒 ${s.name} 上課`, desc: '傳送課前提醒訊息（含上課流程、登入方式、優惠資訊）' },
-    { offsetMin: -30, dur: 5, title: `⚠️ [30min] ${s.name} 即將上課`, desc: '注意 LINE 訊息！' },
-    { offsetMin: 30, dur: 10, title: `[30分鐘關懷] ${s.name} 課後關懷`, desc: '傳送關懷訊息' },
-    { offsetMin: 23*60, dur: 30, title: `[24H Log] ${s.name}`, desc: '完成業務系統紀錄' },
-  ];
+  const syncUrl = getSheetsApiUrl();
 
-  // Open them with delay so browser doesn't block
-  events.forEach((e, idx) => {
-    setTimeout(() => {
-      const start = new Date(ct.getTime() + e.offsetMin * 60000);
-      const end = new Date(start.getTime() + e.dur * 60000);
-      const fmt2 = d => d.toISOString().replace(/[-:]/g,'').replace(/\.\d+/,'');
-      const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(e.title)}&dates=${fmt2(start)}/${fmt2(end)}&details=${encodeURIComponent(e.desc + (s.phone?'\n手機: '+s.phone:'') + (s.lineId?'\nLINE: '+s.lineId:''))}`;
-      window.open(url, '_blank');
-    }, idx * 500);
-  });
-  showToast('開啟 4 個日曆事件 (請允許彈出視窗)');
+  if (syncUrl) {
+    const sep = syncUrl.includes('?') ? '&' : '?';
+    const params = new URLSearchParams({
+      action: 'addCalendarEventsSimple',
+      name: s.name || '',
+      classTime: s.classTime || '',
+      phone: s.phone || '',
+      lineId: s.lineId || '',
+      teacherName: s.teacherName || ''
+    });
+    const url = `${syncUrl}${sep}${params.toString()}`;
+
+    // 背景送出到 Apps Script，不另開結果頁。
+    // Apps Script 會負責建立日曆事件；若事件已存在或時間已過，會自動略過。
+    try {
+      const oldFrame = document.getElementById('calendarSilentFrame');
+      if (oldFrame) oldFrame.remove();
+
+      const iframe = document.createElement('iframe');
+      iframe.id = 'calendarSilentFrame';
+      iframe.style.display = 'none';
+      iframe.src = url;
+      document.body.appendChild(iframe);
+
+      setTimeout(() => {
+        const f = document.getElementById('calendarSilentFrame');
+        if (f) f.remove();
+      }, 12000);
+
+      showToast('已送出 Google 日曆建立請求，請稍後到日曆確認');
+      return;
+    } catch (e) {
+      console.error('Silent calendar add failed:', e);
+      if (!confirm('自動加入 Google 日曆失敗，是否改下載 .ics 日曆檔？')) return;
+    }
+  } else {
+    if (!confirm('尚未設定 Apps Script URL，無法自動加入 Google 日曆。要先下載 .ics 日曆檔嗎？')) return;
+  }
+
+  downloadCalendarICS(s, buildCalendarEvents(s));
+}
+
+function downloadCalendarICS(s, events) {
+  const pad = n => String(n).padStart(2, '0');
+  const icsDate = d => {
+    const z = new Date(d);
+    return z.getUTCFullYear() + pad(z.getUTCMonth()+1) + pad(z.getUTCDate()) + 'T' + pad(z.getUTCHours()) + pad(z.getUTCMinutes()) + pad(z.getUTCSeconds()) + 'Z';
+  };
+  const esc = str => String(str || '')
+    .replace(/\\/g, '\\\\')
+    .replace(/\n/g, '\\n')
+    .replace(/,/g, '\\,')
+    .replace(/;/g, '\\;');
+  const stamp = icsDate(new Date());
+
+  const vevents = events.map((e, idx) => {
+    const start = new Date(e.start);
+    const end = new Date(e.end);
+    return [
+      'BEGIN:VEVENT',
+      `UID:${s.id || uid()}-${idx}@hana-at-manager`,
+      `DTSTAMP:${stamp}`,
+      `DTSTART:${icsDate(start)}`,
+      `DTEND:${icsDate(end)}`,
+      `SUMMARY:${esc(e.title)}`,
+      `DESCRIPTION:${esc(e.desc)}`,
+      'BEGIN:VALARM',
+      'TRIGGER:-PT5M',
+      'ACTION:DISPLAY',
+      `DESCRIPTION:${esc(e.title)}`,
+      'END:VALARM',
+      'END:VEVENT'
+    ].join('\r\n');
+  }).join('\r\n');
+
+  const ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Hana//AT Manager//ZH-TW', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH', vevents, 'END:VCALENDAR'].join('\r\n');
+  const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  const safeName = (s.name || 'student').replace(/[\\/:*?"<>|\s]+/g, '_');
+  a.href = url;
+  a.download = `AT_${safeName}_reminders.ics`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  showToast('已下載日曆檔，內含 4 個提醒事件');
 }
 
 // === CRUD ===
@@ -873,16 +1479,21 @@ function saveStudent() {
     status: document.getElementById('fStatus').value
   };
 
+  const nowIso = new Date().toISOString();
+  let savedId = editingId;
   if (editingId) {
     const idx = students.findIndex(x => x.id === editingId);
-    students[idx] = { ...students[idx], ...data };
+    if (idx >= 0) students[idx] = { ...students[idx], ...data, updatedAt: nowIso };
   } else {
-    students.push({ id: uid(), createdAt: new Date().toISOString(), ...data });
+    savedId = uid();
+    students.push({ id: savedId, createdAt: nowIso, updatedAt: nowIso, ...data });
   }
-  save();
+  markStudentDirty(savedId);
+  saveLocalStudents();
   closeModal();
   render();
-  showToast(editingId ? '已更新' : '已新增');
+  showToast(editingId ? '已更新，本機已保存' : '已新增，本機已保存');
+  save();
 }
 
 function editStudent(id) { openModal(id); }
@@ -891,6 +1502,8 @@ function deleteStudent(id) {
   if (!s) return;
   if (confirm(`確定刪除 ${s.name}？`)) {
     students = students.filter(x => x.id !== id);
+    markStudentDeleted(id);
+    saveLocalStudents();
     save();
     render();
     showToast('已刪除');
@@ -935,6 +1548,8 @@ function render() {
   if (currentView === 'tasks') renderTasks();
   else if (currentView === 'list') renderList();
   else if (currentView === 'templates') renderTemplates();
+  else if (currentView === 'pomodoro') pomoUpdateDisplay();
+  else if (currentView === 'settings') renderSettings();
 }
 
 document.querySelectorAll('.tab').forEach(t => t.onclick = () => switchView(t.dataset.view));
@@ -945,12 +1560,29 @@ document.querySelectorAll('.filter-chip').forEach(c => c.onclick = () => {
   renderList();
 });
 document.getElementById('searchBox').oninput = renderList;
+const brandColorInput = document.getElementById('setBrandColor');
+const brandColorText = document.getElementById('setBrandColorText');
+if (brandColorInput && brandColorText) {
+  brandColorInput.oninput = () => { brandColorText.value = brandColorInput.value; };
+  brandColorText.onchange = () => { if (/^#[0-9a-fA-F]{6}$/.test(brandColorText.value)) brandColorInput.value = brandColorText.value; };
+}
+selectedTaskDate = dateInputValue(new Date());
+const taskDateInput = document.getElementById('taskDateInput');
+if (taskDateInput) {
+  taskDateInput.value = selectedTaskDate;
+  taskDateInput.onchange = () => {
+    taskViewMode = 'date';
+    selectedTaskDate = taskDateInput.value || dateInputValue(new Date());
+    renderTasks();
+  };
+}
 
 // Today date
 const today = new Date();
 document.getElementById('todayDate').textContent = today.toLocaleDateString('zh-TW', { year:'numeric', month:'long', day:'numeric', weekday:'long' });
 
 load();
+if (!localStorage.getItem(SETTINGS_KEY)) { setTimeout(() => switchView('settings'), 350); }
 
 // Refresh tasks every minute
 setInterval(() => { if (currentView === 'tasks') render(); else updateStats(); }, 60000);
@@ -971,6 +1603,22 @@ let pomoState = 'idle'; // idle / working / resting / paused
 let pomoRemaining = pomoConfig.work;
 let pomoInterval = null;
 let pomoCount = parseInt(localStorage.getItem('pomo_count_' + new Date().toDateString()) || '0', 10);
+let pomoAudioCtx = null;
+function unlockPomoAudio() {
+  try {
+    const Ctx = window.AudioContext || window.webkitAudioContext;
+    if (!Ctx) return;
+    if (!pomoAudioCtx) pomoAudioCtx = new Ctx();
+    if (pomoAudioCtx.state === 'suspended') pomoAudioCtx.resume();
+    const osc = pomoAudioCtx.createOscillator();
+    const gain = pomoAudioCtx.createGain();
+    osc.connect(gain); gain.connect(pomoAudioCtx.destination);
+    gain.gain.setValueAtTime(0.0001, pomoAudioCtx.currentTime);
+    osc.start(); osc.stop(pomoAudioCtx.currentTime + 0.03);
+  } catch(e) {}
+}
+
+const CAT_IMAGES = { idle: 'cat_idle.png', working: 'cat_working.png', resting: 'cat_resting.png', paused: 'cat_idle.png' };
 
 function pomoReadConfig() {
   const w = parseInt(document.getElementById('pomoWork').value, 10) || 25;
@@ -1010,6 +1658,7 @@ function pomoInit() {
   pomoRemaining = pomoConfig.work;
   pomoUpdateDisplay();
   pomoUpdateCount();
+  catSetState('idle');
 }
 
 function pomoToggle() {
@@ -1021,6 +1670,8 @@ function pomoToggle() {
 }
 
 function pomoStart() {
+  pomoRequestPermission();
+  unlockPomoAudio();
   if (pomoState === 'idle') {
     pomoState = 'working';
     document.getElementById('pomoStatus').textContent = '工作中';
@@ -1029,6 +1680,8 @@ function pomoStart() {
     pomoState = pomoState_before_pause || 'working';
   }
   document.getElementById('pomoStart').textContent = '暫停';
+  if (pomoState === 'working') catSetState('working');
+  if (pomoState === 'resting') catSetState('resting');
   pomoInterval = setInterval(pomoTick, 1000);
 }
 
@@ -1039,6 +1692,7 @@ function pomoPause() {
   clearInterval(pomoInterval);
   document.getElementById('pomoStart').textContent = '繼續';
   document.getElementById('pomoStatus').textContent = '已暫停';
+  catSetState('paused');
 }
 
 function pomoReset() {
@@ -1067,7 +1721,7 @@ function pomoComplete() {
       const isWork = pomoState === 'working';
       new Notification(isWork ? '🎉 完成一個番茄鐘！' : '☕ 休息結束', {
         body: isWork ? '休息一下吧～' : '回去工作！加油！',
-        icon: '🍅'
+        icon: 'icon.png'
       });
     }
   } catch (e) {}
@@ -1075,19 +1729,28 @@ function pomoComplete() {
   // Vibrate
   if ('vibrate' in navigator) navigator.vibrate([200, 100, 200]);
   
-  // Beep sound
+  // Beep sound + visible fallback. Mobile browsers require audio to be unlocked by a user tap; pomoStart() does that.
   try {
-    const ctx = new (window.AudioContext || window.webkitAudioContext)();
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-    osc.connect(gain);
-    gain.connect(ctx.destination);
-    osc.frequency.value = 800;
-    gain.gain.setValueAtTime(0.3, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.5);
-    osc.start();
-    osc.stop(ctx.currentTime + 0.5);
+    const Ctx = window.AudioContext || window.webkitAudioContext;
+    const ctx = pomoAudioCtx || (Ctx ? new Ctx() : null);
+    if (ctx) {
+      if (ctx.state === 'suspended') ctx.resume();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.frequency.value = 880;
+      gain.gain.setValueAtTime(0.35, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.8);
+      osc.start();
+      osc.stop(ctx.currentTime + 0.8);
+    }
   } catch (e) {}
+  const isWorkDoneForAlert = pomoState === 'working';
+  showToast(isWorkDoneForAlert ? '番茄鐘完成，休息一下' : '休息結束，回到工作');
+  setTimeout(() => {
+    try { alert(isWorkDoneForAlert ? '番茄鐘完成，休息一下～' : '休息結束，回到工作囉'); } catch(e) {}
+  }, 150);
   
   if (pomoState === 'working') {
     // Work done -> rest
@@ -1127,40 +1790,28 @@ function pomoUpdateCount() {
 
 function catSetState(state) {
   const cat = document.getElementById('pomoCat');
-  const eyesOpen = document.getElementById('eyesOpen');
-  const eyesClosed = document.getElementById('eyesClosed');
-  const sleepZ = document.getElementById('sleepZ');
-  const tomato = document.getElementById('catTomato');
-  const body = document.getElementById('catBody');
-  const head = document.getElementById('catHead');
-  
+  const catImg = document.getElementById('pomoCatImg');
+  if (!cat || !catImg) return;
+
+  const nextSrc = CAT_IMAGES[state] || CAT_IMAGES.idle;
+  cat.classList.remove('breathing', 'working', 'resting', 'paused');
+
   if (state === 'working') {
-    // Cat is alert, has tomato
-    eyesOpen.style.display = '';
-    eyesClosed.style.display = 'none';
-    sleepZ.style.display = 'none';
-    tomato.style.display = '';
-    cat.classList.add('breathing');
-    body.setAttribute('fill', '#E8C9A0');
-    head.setAttribute('fill', '#E8C9A0');
+    cat.classList.add('breathing', 'working');
   } else if (state === 'resting') {
-    // Cat is sleeping
-    eyesOpen.style.display = 'none';
-    eyesClosed.style.display = '';
-    sleepZ.style.display = '';
-    tomato.style.display = 'none';
-    cat.classList.add('breathing');
-    body.setAttribute('fill', '#F0D5B0');
-    head.setAttribute('fill', '#F0D5B0');
+    cat.classList.add('breathing', 'resting');
+  } else if (state === 'paused') {
+    cat.classList.add('paused');
+  }
+
+  if (!catImg.src.endsWith(nextSrc)) {
+    catImg.style.opacity = '0.1';
+    setTimeout(() => {
+      catImg.src = nextSrc;
+      catImg.style.opacity = '1';
+    }, 120);
   } else {
-    // Idle
-    eyesOpen.style.display = '';
-    eyesClosed.style.display = 'none';
-    sleepZ.style.display = 'none';
-    tomato.style.display = 'none';
-    cat.classList.remove('breathing');
-    body.setAttribute('fill', '#E8C9A0');
-    head.setAttribute('fill', '#E8C9A0');
+    catImg.style.opacity = '1';
   }
 }
 
@@ -1179,6 +1830,34 @@ switchView = function(v) {
   if (v === 'pomodoro') pomoRequestPermission();
   _origSwitchView(v);
 };
+
+// === Web App / PWA install ===
+let deferredInstallPrompt = null;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredInstallPrompt = e;
+  const btn = document.getElementById('installBtn');
+  if (btn) btn.style.display = 'inline-block';
+});
+
+async function installApp() {
+  if (deferredInstallPrompt) {
+    deferredInstallPrompt.prompt();
+    await deferredInstallPrompt.userChoice;
+    deferredInstallPrompt = null;
+    const btn = document.getElementById('installBtn');
+    if (btn) btn.style.display = 'none';
+  } else {
+    alert('如果按鈕沒有跳出安裝視窗：\n\nAndroid Chrome：點右上角 ⋮ →「加入主畫面」\niPhone Safari：點分享 →「加入主畫面」');
+  }
+}
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').catch(err => console.log('Service worker registration failed:', err));
+  });
+}
+
 </script>
 </body>
 </html>
